@@ -1,0 +1,93 @@
+body {
+  font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #34383e;
+  background-image: url('../images/bg.png');
+  margin: 0 auto;
+  width: 640px;
+}
+div.header .title a {
+  color: white;
+  font-size: 48px;
+  text-decoration: none;
+  text-shadow: 2px 4px #000;
+}
+div.header .tagline {
+  color: white;
+  font-size: 16px;
+  float: left;
+}
+div.header .links {
+  float: right;
+}
+div.post {
+  background-color: #fff;
+  background-repeat: no-repeat;
+  /* border-radiu s*/
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  /* box-shadow */
+  -webkit-box-shadow: rgba(0,0,0,0.8) 1px 1px 6px;
+  -moz-box-shadow: rgba(0,0,0,0.8) 1px 1px 6px;
+  box-shadow: rgba(0,0,0,0.8) 1px 1px 6px;
+}
+div.header, div.post, div.footer {
+  margin: 20px;
+  padding: 20px;
+}
+div.post .title a {
+  font-size: 22px;
+  color: grey;
+  text-decoration: none;
+  text-shadow: 1px 1px #333;
+}
+div.post .timestamp {
+   color: grey;
+   font-size: 10px;
+   text-align: right;
+   font-style: italic;
+}
+div.post .body img {
+  float: right;
+}
+div.footer, div.footer a {
+  color: grey;
+  font-size: 10px;
+  text-align: center;
+}
+pre {
+  font-size: 12px;
+  padding:10px;
+}
+a img {
+  border: 0px solid black;
+}
+form {
+  display: inline-block;
+}
+input[type=text], textarea {
+  width: 538px;
+
+}
+textarea {
+  height: 320px;
+}
+input[type=text], textarea {
+  padding: 10px;
+  border: solid black 0px;
+  border-bottom:solid 1px black;
+}
+input[type=submit] {
+  background-color: AAA;
+  padding:5px;
+  text-align:center;
+  /* border-radiu s*/
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+input[type=submit]:hover {
+  border-color:#FFF;
+}
