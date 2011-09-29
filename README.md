@@ -46,7 +46,7 @@ Here we change the blog name to "Butts' blog" and add a new post.
             )
     
     )
-    php > file_put_contents('data.php',serialize($data);
+    php > file_put_contents('data.php',serialize($data));
 
 
 This blog is meant for people who
