@@ -8,8 +8,59 @@ modify the object on the fly, and then
 `file_put_contents('data.php',serialize($data));`  
 and you're all set!
 
-This blog is meant for people who:
+Example
+-------
+Here we change the blog name to "Butts' blog" and add a new post.
+
+    $ php -a
+    Interactive shell
+    
+    php > $data = unserialize(file_get_contents('data.php'));
+    php > $new_post = new stdClass();
+    php > $new_post->title = "A very compelling blog post";
+    php > $new_post->body = "A very well written and researched article.";
+    php > $new_post->published = 1;
+    php > $data->posts[time()] = $new_post;
+    php > $data->name = "Butts' blog";
+    php > print_r($data);
+    stdClass Object
+    (
+        [name] => Butts' blog
+        [tagline] => Your blog's tagline.
+        [posts] => Array
+            (
+                [1315602148] => stdClass Object
+                    (
+                        [title] => Hello World
+                        [body] => <pre class="sh_php">echo "hello world";</pre>This is a simple demonstration of a post.
+                        [published] => 1
+                    )
+    
+                [1317320468] => stdClass Object
+                    (
+                        [title] => A very compelling blog post
+                        [body] => A very well written and researched article.
+                        [published] => 1
+                    )
+    
+            )
+    
+    )
+    php > file_put_contents('data.php',serialize($data);
+
+
+This blog is meant for people who
+---------------------------------
 
 * don't want a database.
 * are good with the php cli and php.
-* *are most likely are crazy.*
+* *are most likely crazy.*
+
+Features
+--------
+
+* Syntax Highlighing ([Implementation](http://shjs.sourceforge.net/))
+* RSS Feed ([Implementation](http://www.ajaxray.com/blog/2008/03/08/php-universal-feed-generator-supports-rss-10-rss-20-and-atom/))
+* Nice CSS
+* Individual page view
+* Publish flag
