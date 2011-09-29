@@ -1,4 +1,7 @@
-This is a serialized blog for all you breakfast people.
+A serialized blog for all you breakfast people.
+===============================================
+
+[<img width=200px src="http://i.imgur.com/sgG03.png" />](http://i.imgur.com/sgG03.png)
 
 The blog is designed to be loaded up via command line (`php -a`)
 
@@ -48,7 +51,6 @@ Here we change the blog name to "Butts' blog" and add a new post.
     
     )
     php > file_put_contents('data.php',serialize($data)); // Save
-
 
 This blog is meant for people who
 ---------------------------------
