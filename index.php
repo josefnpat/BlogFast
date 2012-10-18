@@ -1,10 +1,8 @@
 <?php
-include('header.php');
+include('inc/header.php');
 if($_GET['timestamp']){
   if(isset($blog->posts[$_GET['timestamp']])){
-    if($blog->posts[$_GET['timestamp']]->published){
-      echo_post($blog->posts[$_GET['timestamp']],$_GET['timestamp']);
-    }
+    echo_post($blog->posts[$_GET['timestamp']],$_GET['timestamp']);
   } else {
     $post->title = "Sorry!";
     $post->body = "The post you're looking for does not exist.";
@@ -12,10 +10,10 @@ if($_GET['timestamp']){
   }
 } else {
   foreach($blog->posts as $time => $post){
-    if($post->published){
+    if($time <= time()){
       echo_post($post,$time);
     }
   }
 }
-include('footer.php');
+include('inc/footer.php');
 ?>

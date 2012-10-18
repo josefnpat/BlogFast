@@ -1,5 +1,5 @@
 body {
-  font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   padding: 10px;
   font-size: 16px;
   background-color: #34383e;
@@ -57,8 +57,12 @@ div.footer, div.footer a {
   font-size: 10px;
   text-align: center;
 }
+div.header .title a, div.post .title a{
+  font-family: 'Ubuntu', 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
 pre {
-  font-size: 12px;
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 14px;
   padding:10px;
 }
 a img {

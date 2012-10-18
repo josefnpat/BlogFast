@@ -1,0 +1,2 @@
+I found and jsmin'd sh_lua.js to sh_lua.min.js from here:
+https://github.com/cucumber/gherkin-syntax-highlighters/blob/gh-pages/shjs/sh_lua.js

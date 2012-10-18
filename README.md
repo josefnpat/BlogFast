@@ -6,9 +6,9 @@ A serialized blog for all you breakfast people.
 The blog is designed to be loaded up via command line (`php -a`)
 
 Performing a "simple":  
-`$data = unserialize(file_get_contents('data.php'));`  
+`$data = unserialize(file_get_contents('db'));`  
 modify the object on the fly, and then  
-`file_put_contents('data.php',serialize($data));`  
+`file_put_contents('db',serialize($data));`  
 and you're all set!
 
 Example
@@ -18,12 +18,12 @@ Here we change the blog name to "Butts' blog" and add a new post.
     $ php -a
     Interactive shell
     
-    php > $data = unserialize(file_get_contents('data.php')); // Load
+    php > $data = unserialize(file_get_contents('db')); // Load
     php > $new_post = new stdClass();
     php > $new_post->title = "A very compelling blog post";
     php > $new_post->body = "A very well written and researched article.";
-    php > $new_post->published = 1;
-    php > $data->posts[time()] = $new_post; // Notice how time is declared by the index.
+    php > $data->posts[time()] = $new_post; // The index is the time of the post.
+    php > // The timestamp argument will still show these posts, regardless of server's time.
     php > $data->name = "Butts' blog";
     php > asort($data->posts); //Be sure to sort the posts by time!
     php > print_r($data); // What does it look like?
@@ -37,20 +37,24 @@ Here we change the blog name to "Butts' blog" and add a new post.
                     (
                         [title] => A very compelling blog post
                         [body] => A very well written and researched article.
-                        [published] => 1
                     )
     
-                [1315602148] => stdClass Object
+                [1359990213] => stdClass Object
                     (
-                        [title] => Hello World
-                        [body] => <pre class="sh_php">echo "hello world";</pre>This is a simple demonstration of a post.
-                        [published] => 1
+                        [title] => This is a test
+                        [body] => This won't show, unless you have the exact time!
+                    )
+
+                [1861941600] => stdClass Object
+                    (
+                        [title] => Come with me if you want to live. 
+                        [body] => A T-800 is sent back in time to kill Sarah Connor in The Terminator.
                     )
     
             )
     
     )
-    php > file_put_contents('data.php',serialize($data)); // Save
+    php > file_put_contents('db',serialize($data)); // Save
 
 This blog is meant for people who
 ---------------------------------
@@ -66,4 +70,4 @@ Features
 * RSS Feed ([Implementation](http://www.ajaxray.com/blog/2008/03/08/php-universal-feed-generator-supports-rss-10-rss-20-and-atom/))
 * Nice CSS
 * Individual page view
-* Publish flag
+* Only shows posts that have happend.
