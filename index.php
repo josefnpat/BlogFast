@@ -1,17 +1,20 @@
 <?php
 include('inc/header.php');
-if($_GET['timestamp']){
-  if(isset($blog->posts[$_GET['timestamp']])){
-    echo_post($blog->posts[$_GET['timestamp']],$_GET['timestamp']);
+if($_GET['post']){
+  $post = $blog->getPost($_GET['post'];
+  if(isset($post)){
+    echo_post($post);
   } else {
-    $post->title = "Sorry!";
-    $post->body = "The post you're looking for does not exist.";
+    $post = new post();
+    $post->setTitle("Sorry!");
+    $post->setBody("The post you're looking for does not exist.");
+    $post->setTime(time());
     echo_post($post);
   }
 } else {
-  foreach($blog->posts as $time => $post){
-    if($time <= time()){
-      echo_post($post,$time);
+  foreach($blog->getPosts() as $post){
+    if($post->getTime() <= time() and $post->getTime() != 0){
+      echo_post($post);
     }
   }
 }

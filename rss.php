@@ -1,25 +1,22 @@
 <?php
-$blog = unserialize(file_get_contents("db"));
+$blog = new blog("db.php");
 $rss_link = "http://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 $blog_link = dirname($rss_link);
 include("libs/FeedWriter.php");
 $TestFeed = new FeedWriter(RSS2);
-$TestFeed->setTitle($blog->name);
+$TestFeed->setTitle($blog->getName);
 $TestFeed->setLink($blog_link);
-$TestFeed->setDescription($blog->tagline);
-$TestFeed->setImage($blog->name,$blog->tagline,"$blog_link/images/favicon.ico");
-asort($blog->posts);
-foreach($blog->posts as $time => $post){
-  if($time <= time()){
+$TestFeed->setDescription($blog->getTagline);
+$TestFeed->setImage($blog->name,$blog->getTagline,"$blog_link/images/favicon.ico");
+foreach($blog->getPosts() => $post){
+  if($post->getTime() <= time() and $post->getTime() != 0){
 	  $newItem = $TestFeed->createNewItem();
-	  $newItem->setTitle($post->title);
-	  $newItem->setLink("$blog_link?timestamp=$time");
-	  $newItem->setDate($time);
-	  $newItem->setDescription($post->body);
+	  $newItem->setTitle($post->getTitle());
+	  $newItem->setLink("$blog_link?post=".$post->getTime());
+	  $newItem->setDate($post->getTime());
+	  $newItem->setDescription($post->getBody());
 	  $TestFeed->addItem($newItem);
   }
 }
 $TestFeed->genarateFeed();
-
-//print_r($_SERVER);
 ?>
