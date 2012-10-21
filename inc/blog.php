@@ -5,48 +5,45 @@ class blog {
   private $name;
   private $tagline;
   private $posts;
-  private $hash;
-  private $save_prefix = "<?php die();\n";
+  private $save_prefix = "<?php die('BlogFast');?>";
   public function __construct($loc){
     $this->loc = $loc;
-    $this->load()
+    $this->load();
   }
   public function load(){
     $data = $this->decode(file_get_contents($this->loc));
     
-    if(isset($this->name)){
+    if(isset($data->name)){
       $this->name = $data->name;
     } else {
       $this->name = "Blog Name";
     }
     
-    if(isset($this->tagline)){
+    if(isset($data->tagline)){
       $this->tagline = $data->tagline;
     } else {
       $this->tagline = "Blog Tagline";
     }
     
-    if(isset($this->posts)){
+    if(isset($data->posts)){
       $this->posts = $data->posts;
     } else {
       $this->posts = array();
     }
     
-    if(isset($data->hash)){
-      $this->hash = $data->hash;
-    } else {
-      // Use something bigger probably.
-      $this->hash = uniqueid(1);
-    }
   }
   public function save(){
-    file_put_contents($this->loc,this->encode());
+    $data = new stdClass();
+    $data->name = $this->name;
+    $data->tagline = $this->tagline;
+    $data->posts = $this->posts;
+    file_put_contents($this->loc,$this->encode($data));
   }
   private function encode($data){
-    return $this->save_prefix.json_encode($data);
+    return $this->save_prefix.serialize($data);
   }
   private function decode($data){
-    return json_decode(substr($data,count($this->save_prefix));
+    return unserialize(substr($data,strlen($this->save_prefix)));
   }
 
   public function getName(){
@@ -82,7 +79,7 @@ class blog {
     }
   }
   public function addPost($post){
-    if(typeof($post) == "post"){
+    if(gettype($post)=="object" and get_class($post) == "post"){
       $this->posts[] = $post;
       ksort($this->posts);
     } else {
@@ -94,7 +91,7 @@ class blog {
       $found = FALSE;
       foreach($this->posts as $tkey => $tpost){
         if($tpost === $post){ // no idea if this will work, lol.
-          unset($this->posts[$tkey];
+          unset($this->posts[$tkey]);
           $found = TRUE;
           break;
         }
@@ -111,9 +108,9 @@ class blog {
 }
 
 class post {
-  private title = "";
-  private time = 0;
-  private body = "";
+  private $title = "";
+  private $time = 0;
+  private $body = "";
   public function getTitle(){
     return $this->title;
   }

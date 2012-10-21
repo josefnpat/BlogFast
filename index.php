@@ -1,7 +1,7 @@
 <?php
 include('inc/header.php');
-if($_GET['post']){
-  $post = $blog->getPost($_GET['post'];
+if(isset($_GET['post'])){
+  $post = $blog->getPost($_GET['post']);
   if(isset($post)){
     echo_post($post);
   } else {
@@ -13,9 +13,10 @@ if($_GET['post']){
   }
 } else {
   foreach($blog->getPosts() as $post){
-    if($post->getTime() <= time() and $post->getTime() != 0){
+    print_r($post);
+    //if($post->getTime() <= time() and $post->getTime() != 0){
       echo_post($post);
-    }
+    //}
   }
 }
 include('inc/footer.php');

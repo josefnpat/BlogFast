@@ -1,6 +1,7 @@
 <?php
 $start_time = microtime(1);
-
+require("inc/blog.php");
+require("inc/template.php");
 $blog = new blog("db.php");
 
 $blog_link = dirname("http://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']);
@@ -19,11 +20,11 @@ $blog_link = dirname("http://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']);
   }
 ?>
     <link type="text/css" rel="stylesheet" href="css/sh_darkness.min.css">
-    <title><?=$blog->name?></title>
+    <title><?php echo $blog->getName(); ?></title>
   </head>
   <body onload="sh_highlightDocument();">
     <div class="header">
-      <div class="title"><a href="<?=$blog_link?>"><?=$blog->name?></a></div>
-      <div class="tagline"><?=$blog->tagline?></div>
+      <div class="title"><a href="<?php echo $blog_link; ?>"><?php echo $blog->getName(); ?></a></div>
+      <div class="tagline"><?php echo $blog->getTagline();?></div>
       <div class="links"><a href="rss.php"><img src="images/rss.png" /></a></div>
     </div>

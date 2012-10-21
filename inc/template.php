@@ -2,7 +2,7 @@
 
 function echo_post($post){
   echo "    <div class=\"post\">\n";
-  echo "      <div class=\"title\"><a href=\"?post=".$post->getTime."\">".$post->getTitle()."</a></div>\n";
+  echo "      <div class=\"title\"><a href=\"?post=".$post->getTime()."\">".$post->getTitle()."</a></div>\n";
   echo "      <div class=\"body\">".$post->getBody()."</div>\n";
   if($post->getTime() > 0){
     // http://php.net/manual/en/class.datetime.php for alternate DATE_'s
