@@ -8,15 +8,21 @@ if(isset($_GET['post'])){
     $post = new post();
     $post->setTitle("Sorry!");
     $post->setBody("The post you're looking for does not exist.");
-    $post->setTime(time());
     echo_post($post);
   }
 } else {
-  foreach($blog->getPosts() as $post){
-    print_r($post);
-    //if($post->getTime() <= time() and $post->getTime() != 0){
-      echo_post($post);
-    //}
+  $posts = $blog->getPosts();
+  if(count($posts)>0){
+    foreach($posts as $post){
+      if($post->getTime() <= time() and $post->getTime() != 0){
+        echo_post($post);
+      }
+    }
+  } else {
+    $post = new post();
+    $post->setTitle("Sorry!");
+    $post->setBody("There aren't any posts yet.");
+    echo_post($post);
   }
 }
 include('inc/footer.php');

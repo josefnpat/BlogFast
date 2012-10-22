@@ -72,9 +72,11 @@ class blog {
     return $this->posts;
   }
   public function getPost($post_time){
-    foreach($this->getPosts() as $post){
-      if($post->getTime() == $post_time){
-        return $post;
+    if($post_time>0){
+      foreach($this->getPosts() as $post){
+        if($post->getTime() == $post_time){
+          return $post;
+        }
       }
     }
   }
@@ -123,7 +125,7 @@ class post {
     }
   }
   public function getTime(){
-    return $time;
+    return $this->time;
   }
   public function setTime($time){
     if($time != "" and is_int($time)){
